@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+    <h1></h1>
+        
+        <input id="get-city" placeholder="Type City Here">
+        <button id="search-button">Search</button>
+        
+    <div id="weather-display">
+        <h2 id="current-weather">Current Weather</h2>
+        <p class="current">Location: <span id="city"></span></p>
+        <p class="current">Temperature: <span id="temp"></span></p>
+        <p class="current">Humidity: <span id="humidity"></span></p>
+        <p class="current">Windspeed: <span id="windspeed"></span></p>
+        <p class="current">Current Conditions: <span id="current-cond"></span></p>
+        <div class="current"><img id="icon"/></div>
+
+    </div>
+    <table>
+        <tbody>
+            <tr id="forecast-row">
+
+            </tr>
+        </tbody>
+    </table>       
+   
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="weather.js" ></script>
+</body>
+</html>
