@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css"
 </head>
 <body>
-    <h1></h1>
-        
-        <input id="get-city" placeholder="Type City Here">
-        <button id="search-button">Search</button>
-        
-    <div id="weather-display">
-        <h2 id="current-weather">Current Weather</h2>
-        <p class="current">Location: <span id="city"></span></p>
-        <p class="current">Temperature: <span id="temp"></span></p>
-        <p class="current">Humidity: <span id="humidity"></span></p>
-        <p class="current">Windspeed: <span id="windspeed"></span></p>
-        <p class="current">Current Conditions: <span id="current-cond"></span></p>
-        <div class="current"><img id="icon"/></div>
+    <h1>Weather Dashboard</h1>
+    <div id ="top-container">
+        <div id="cities-display">
+            <input id="get-city" placeholder="Type City Here">
+            <button id="search-button">Search</button>
+            <ul id="cities-list">
 
+            </ul>
+        </div>    
+        <div id="weather-display">
+            <h2 id="current-weather" class="current">Current Weather in <span id="city"></span></h2>
+            <p class="current">Temperature: <span id="temp"></span></p>
+            <p class="current">Humidity: <span id="humidity"></span></p>
+            <p class="current">Windspeed: <span id="windspeed"></span></p>
+            <p class="current">Current Conditions: <span id="current-cond"></span></p>
+            <div class="current">UV index:<img id="icon"/></div>
+
+        </div>
     </div>
     <table>
-        <tbody>
+        <tbody id="forecast-body">
             <tr id="forecast-row">
 
             </tr>
         </tbody>
-    </table>       
+    </table> 
+
    
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

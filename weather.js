@@ -30,6 +30,7 @@ function getCityWeather(city) {
     var currentWeather = response.weather[0].description;
     var cityLatitude = response.coord.lat;
     var cityLongitude = response.coord.lon;
+    var uvIndex = response
     
     $("#city").html(city);
     $("#temp").html(temp);
