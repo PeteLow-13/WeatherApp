@@ -24,7 +24,7 @@ function makeButtons(){
     })
   }
 }
-makeButtons();
+// makeButtons();
 
 function getCityWeather(city) {
   $.ajax({
@@ -39,7 +39,7 @@ function getCityWeather(city) {
       let cityLongitude = response.coord.lon;
     
     $("#city").html(city);
-    // makeButtons();
+     makeButtons();
 
     displayWeatherForecast(cityLatitude,cityLongitude);
     currentWeatherDisplay(cityLatitude,cityLongitude);
