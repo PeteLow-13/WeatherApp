@@ -10,6 +10,7 @@ body{
 h1{
     background-color: rgba(95, 20, 165, 0.534);
     text-align: center;
+    max-width: 95%s;
     border-style: solid;
     border-color: black;
     border-width: 2px;
@@ -79,4 +80,5 @@ td{
 }
 #forecats-table{
     display: flex;
+    max-width: 95%;
 }
