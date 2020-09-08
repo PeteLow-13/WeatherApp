@@ -6,7 +6,6 @@ $("#search-button").on("click", function(){
 
   const searchedCity = $("#get-city").val();
   getCityWeather(searchedCity)
-  console.log(searchedCity)
 } )
 
 localStorage.getItem("cities");
@@ -14,9 +13,11 @@ console.log(JSON.parse(localStorage.getItem("cities")))
 
 function makeButtons(){
   $("#cities-list").html("")
+  // for(i = 0; i < 10 ; i++){
   for(i = 0; i < cities.length; i++){
   
     $("#cities-list").append(`<button class="cities" id="${cities[i]}">${cities[i]}</button>`)
+    
     console.log(cities)
     $(".cities").on("click", function(){
     var buttonAttr =  $(this).attr("id");
@@ -24,29 +25,50 @@ function makeButtons(){
     })
   }
 }
-// makeButtons();
+makeButtons();
+
+
+
+
+
+// function clearButtons(event){
+//   event.preventDefault()
+//   cities = [];
+//   localStorage.clear();
+//   document.location.reload();
+//   // $("#cities-List").html.empty;
+// }
+
+// $("#clear-button").on("click", clearButtons());
+// function clearHistory(){
+//   cities = []
+
+// }
+// ($("#cities-list"))
 
 function getCityWeather(city) {
   $.ajax({
     method: "GET",
     url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey
     }).then(function(response){
+      
+      if(cities.indexOf(city) !== -1){cities.splice(city)}
+      else{
       cities.unshift(city)
       localStorage.setItem("cities", JSON.stringify(cities));
+      }
       console.log(cities)
-
+      
       let cityLatitude = response.coord.lat;
       let cityLongitude = response.coord.lon;
     
     $("#city").html(city);
-     makeButtons();
 
     displayWeatherForecast(cityLatitude,cityLongitude);
     currentWeatherDisplay(cityLatitude,cityLongitude);
   }) 
 }
 getCityWeather(cities[0]);
-
 
 function currentWeatherDisplay (latitude,longitude){
   $.ajax({
@@ -59,17 +81,15 @@ function currentWeatherDisplay (latitude,longitude){
     const currentWeather = response.current.weather[0].description;
     const uvIndex = response.current.uvi;
     const weatherIcon = response.daily[0].weather[0].icon;
-
-    const currentIcon = ( src="http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
-    console.log(currentIcon)
-
+    const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+    
     $("#temp").html(temp);
     $("#humidity").html(humidity);
     $("#windspeed").html(windSpeed);
     $("#current-cond").html(currentWeather);
     $("#uv-index").html(uvIndex);
-    $("#current-icon").html(currentIcon);
-    
+    $("#weather-icon").html("<img src="+iconURL+">");
+
     if (uvIndex < 3) {
       $("#uv-index").css("background-color", "green");
     } else if (uvIndex < 6) {
@@ -81,7 +101,7 @@ function currentWeatherDisplay (latitude,longitude){
     } else {
       $("#uv-index").css("background-color", "white");
     } 
-  })
+  });
 }
 
 function displayWeatherForecast(latitude,longitude){
@@ -101,20 +121,20 @@ function displayWeatherForecast(latitude,longitude){
       
       const data = document.createElement("td");
       
-      const dateHeader = document.createElement("h3")
+      const dateHeader = document.createElement("h3");
       dateHeader.innerHTML = fDate.toLocaleDateString()
       data.append(dateHeader)
       
-      const icon = document.createElement("img")
+      const icon = document.createElement("img");
       icon.setAttribute("src","http://openweathermap.org/img/wn/" + fIcon + "@2x.png")
       data.append(icon); 
       
-      const tempSpan = document.createElement("div")
+      const tempSpan = document.createElement("div");
       tempSpan.innerHTML = `High Temp: ${fTemp} °`
       data.append(tempSpan);
       
-      const lowTempSpan = document.createElement("div")
-      lowTempSpan.innerHTML = `Low Temp ${fLowTemp}°`
+      const lowTempSpan = document.createElement("div");
+      lowTempSpan.innerHTML = `Low Temp: ${fLowTemp}°`
       data.append(lowTempSpan)
       
       const humiditySpan = document.createElement("div");
@@ -127,4 +147,5 @@ function displayWeatherForecast(latitude,longitude){
   })
 }
 })
+
 

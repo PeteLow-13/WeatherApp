@@ -11,10 +11,10 @@ body{
     -o-background-size: cover;
     background-size: cover;
 }
-h1{
-    background-color: rgba(86, 83, 88, 0.384);
+h1, h2{
+    background-color: rgba(12, 60, 219, 0.274);
     text-align: center;
-    text-shadow: rgba(0, 0, 0, 0.527);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.527);
     color: whitesmoke;
     max-width: 95%s;
     border-style: solid;
@@ -28,8 +28,11 @@ h1{
     display: flex;
     width: 95%;
 }
-#weather-display{
-    background-color: whitesmoke;
+.weather-icon img {
+    margin: auto;
+}
+#weather-display {
+    background-color: rgba(12, 60, 219, 0.274);
     height: auto;
     width: 70%;
     border-style: solid;
@@ -41,8 +44,18 @@ h1{
     margin: 5px;
     
 }
+
+#get-city{
+    max-width: 90%;
+
+}
+#search-button{
+    max-width: 60%;
+    padding: 5px;
+    margin: 5px;
+}
 #cities-display{
-    background-color:rgba(86, 83, 88, 0.384) ;
+    background-color:rgba(12, 60, 219, 0.274) ;
     Height: auto;
     width: 30%;
     border-style: solid;
@@ -57,7 +70,7 @@ h1{
 }
 #forecast-row{
     display: flex;
-    /* width: 95%; */
+    max-width: 95%; 
     height: auto;
     background-color: rgba(86, 83, 88, 0.384);
     padding: 5px;
@@ -76,7 +89,7 @@ h1{
     border-radius: 5px;
 } */
 td{
-    background-color:rgba(0, 4, 255, 0.74);
+    background-color:rgba(12, 60, 219, 0.274);
     padding: 5px;
     border-color: black;
     border-style: solid;
