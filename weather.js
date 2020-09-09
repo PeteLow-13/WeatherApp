@@ -65,7 +65,7 @@ function currentWeatherDisplay (latitude,longitude){
     const currentWeather = response.current.weather[0].description;
     const uvIndex = response.current.uvi;
     const weatherIcon = response.daily[0].weather[0].icon;
-    const iconURL = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+    const iconURL = `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
     
     $("#temp").html(temp);
     $("#humidity").html(humidity);
@@ -110,7 +110,7 @@ function displayWeatherForecast(latitude,longitude){
       data.append(dateHeader)
       
       const icon = document.createElement("img");
-      icon.setAttribute("src","http://openweathermap.org/img/wn/" + fIcon + "@2x.png")
+      icon.setAttribute("src","https://openweathermap.org/img/wn/" + fIcon + "@2x.png")
       data.append(icon); 
       
       const tempSpan = document.createElement("div");

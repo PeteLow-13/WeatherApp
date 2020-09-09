@@ -5,7 +5,7 @@
 }
 
 body{
-    background-image: url("/assets/IMG_1573.jpeg");
+    background-image: url("./assets/IMG_1573.jpeg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
