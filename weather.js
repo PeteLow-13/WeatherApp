@@ -4,47 +4,38 @@ const apiKey = "c1759e335cae47d4b635c175d1bbe0ba";
 
 $("#search-button").on("click", function(){
 
-  const searchedCity = $("#get-city").val();
-  getCityWeather(searchedCity)
+  let searchedCity = $("#get-city").val();
+  let editedCity = searchedCity.charAt(0).toUpperCase()+searchedCity.slice(1);
+  getCityWeather(editedCity)
 } )
+
+console.log(cities);
+
 
 localStorage.getItem("cities");
 console.log(JSON.parse(localStorage.getItem("cities")))
 
+
 function makeButtons(){
   $("#cities-list").html("")
-  // for(i = 0; i < 10 ; i++){
-  for(i = 0; i < cities.length; i++){
+    let filteredCities = [];
+        cities.forEach((city)=> {
+          if(!filteredCities.includes(city)){
+            filteredCities.push(city);
+          }
+    } );
+  for(i = 0; i < filteredCities.length; i++){
   
-    $("#cities-list").append(`<button class="cities" id="${cities[i]}">${cities[i]}</button>`)
+    $("#cities-list").append(`<button class="cities" id="${filteredCities[i]}">${filteredCities[i]}</button><br>`)
     
-    console.log(cities)
+    console.log(filteredCities)
     $(".cities").on("click", function(){
     var buttonAttr =  $(this).attr("id");
     getCityWeather(buttonAttr);
     })
   }
-}
+};
 makeButtons();
-
-
-
-
-
-// function clearButtons(event){
-//   event.preventDefault()
-//   cities = [];
-//   localStorage.clear();
-//   document.location.reload();
-//   // $("#cities-List").html.empty;
-// }
-
-// $("#clear-button").on("click", clearButtons());
-// function clearHistory(){
-//   cities = []
-
-// }
-// ($("#cities-list"))
 
 function getCityWeather(city) {
   $.ajax({
@@ -52,11 +43,8 @@ function getCityWeather(city) {
     url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey
     }).then(function(response){
       
-      if(cities.indexOf(city) !== -1){cities.splice(city)}
-      else{
       cities.unshift(city)
       localStorage.setItem("cities", JSON.stringify(cities));
-      }
       console.log(cities)
       
       let cityLatitude = response.coord.lat;
@@ -66,8 +54,9 @@ function getCityWeather(city) {
 
     displayWeatherForecast(cityLatitude,cityLongitude);
     currentWeatherDisplay(cityLatitude,cityLongitude);
+    makeButtons();
   }) 
-}
+};
 getCityWeather(cities[0]);
 
 function currentWeatherDisplay (latitude,longitude){
@@ -144,8 +133,8 @@ function displayWeatherForecast(latitude,longitude){
       forecastRow.append(data);
       
     }  
-  })
+  });
 }
-})
+});
 
 
