@@ -7,28 +7,23 @@ $("#search-button").on("click", function(){
   let searchedCity = $("#get-city").val();
   let editedCity = searchedCity.charAt(0).toUpperCase()+searchedCity.slice(1);
   getCityWeather(editedCity)
-} )
-
-console.log(cities);
-
+} );
 
 localStorage.getItem("cities");
-console.log(JSON.parse(localStorage.getItem("cities")))
-
+console.log(JSON.parse(localStorage.getItem("cities")));
 
 function makeButtons(){
   $("#cities-list").html("")
     let filteredCities = [];
-        cities.forEach((city)=> {
-          if(!filteredCities.includes(city)){
-            filteredCities.push(city);
-          }
-    } );
+      cities.forEach((city)=> {
+        if(!filteredCities.includes(city)){
+          filteredCities.push(city);
+        }
+      } 
+  );
   for(i = 0; i < filteredCities.length; i++){
   
-    $("#cities-list").append(`<button class="cities" id="${filteredCities[i]}">${filteredCities[i]}</button><br>`)
-    
-    console.log(filteredCities)
+    $("#cities-list").append(`<button class="cities" id="${filteredCities[i]}">${filteredCities[i]}</button><br>`);
     $(".cities").on("click", function(){
     var buttonAttr =  $(this).attr("id");
     getCityWeather(buttonAttr);
@@ -55,7 +50,7 @@ function getCityWeather(city) {
     displayWeatherForecast(cityLatitude,cityLongitude);
     currentWeatherDisplay(cityLatitude,cityLongitude);
     makeButtons();
-  }) 
+  }); 
 };
 getCityWeather(cities[0]);
 
@@ -89,9 +84,9 @@ function currentWeatherDisplay (latitude,longitude){
       $("#uv-index").css("background-color", "red");
     } else {
       $("#uv-index").css("background-color", "white");
-    } 
+    }; 
   });
-}
+};
 
 function displayWeatherForecast(latitude,longitude){
   $.ajax({
@@ -134,7 +129,16 @@ function displayWeatherForecast(latitude,longitude){
       
     }  
   });
-}
+};
+
+function clearCities(event){
+  event.preventDefault();
+  cities = [];
+  localStorage.clear();
+  document.location.reload()
+};
+
+$("#clear-button").on("click", clearCities);
 });
 
 
