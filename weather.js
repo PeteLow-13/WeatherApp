@@ -35,7 +35,7 @@ makeButtons();
 function getCityWeather(city) {
   $.ajax({
     method: "GET",
-    url: "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey
+    url: "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey
     }).then(function(response){
       
       cities.unshift(city)
