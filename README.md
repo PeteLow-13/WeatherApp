@@ -14,7 +14,7 @@ Installation
 This project uses the open weather API, J-query, Javascript, HTML, CSS. 
 ## Image
 
-![Image](./assets/weatherdashboard.png)
+![Image](./Assets/weatherdashboard.png)
 
 ## Repository
 - https://github.com/PeteLow-13/WeatherApp
